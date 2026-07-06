@@ -1,0 +1,63 @@
+description:
+  human:
+    en_US: Make an outbound voice call to a phone number using Plivo.
+    zh_Hans: 使用 Plivo 向手机号码拨打外呼语音电话。
+  llm: Make an outbound voice call to a destination phone number. Requires the destination
+    number, source number, and an Answer URL that returns Plivo XML.
+extra:
+  python:
+    source: tools/make_call.py
+identity:
+  author: Plivo
+  label:
+    en_US: Make Call
+    zh_Hans: 拨打电话
+  name: make_call
+parameters:
+- form: llm
+  human_description:
+    en_US: The destination phone number in E.164 format (e.g., +14155551234).
+    zh_Hans: E.164 格式的目标手机号码（例如：+14155551234）。
+  label:
+    en_US: To Number
+    zh_Hans: 目标号码
+  llm_description: The destination phone number to call, in E.164 format (e.g., +14155551234).
+  name: to_number
+  required: true
+  type: string
+- form: llm
+  human_description:
+    en_US: The source phone number (must be a Plivo voice-enabled number) in E.164 format.
+    zh_Hans: 发起呼叫的号码（必须是启用语音功能的 Plivo 号码），E.164 格式。
+  label:
+    en_US: From Number
+    zh_Hans: 发起号码
+  llm_description: The source phone number to place the call from. Must be a valid
+    Plivo voice-enabled phone number in E.164 format (e.g., +14155550100).
+  name: from_number
+  required: true
+  type: string
+- form: llm
+  human_description:
+    en_US: The URL Plivo fetches Plivo XML from when the call is answered.
+    zh_Hans: 通话接通时 Plivo 从中获取 Plivo XML 的 URL。
+  label:
+    en_US: Answer URL
+    zh_Hans: Answer URL
+  llm_description: The URL that Plivo fetches Plivo XML (call instructions) from once
+    the call is answered.
+  name: answer_url
+  required: true
+  type: string
+- form: form
+  human_description:
+    en_US: HTTP method Plivo uses to fetch the Answer URL. GET or POST; defaults to POST.
+    zh_Hans: Plivo 获取 Answer URL 时使用的 HTTP 方法。GET 或 POST；默认为 POST。
+  label:
+    en_US: Answer Method
+    zh_Hans: Answer 方法
+  llm_description: The HTTP method Plivo uses to fetch the Answer URL. Must be GET
+    or POST. Defaults to POST when omitted.
+  name: answer_method
+  required: false
+  type: string
